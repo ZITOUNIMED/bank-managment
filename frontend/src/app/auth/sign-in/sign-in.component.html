@@ -1,0 +1,13 @@
+<form [formGroup]="signInForm" (submit)="onSubmit()">
+    <div>
+        <label>Login</label>
+        <input type="text" formControlName="login"/>
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" formControlName="password"/>
+    </div>
+    <div>
+        <button type="submit" [disabled]="signInForm.invalid">Sign In</button>
+    </div>
+</form>
