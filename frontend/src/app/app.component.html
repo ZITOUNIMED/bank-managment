@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<main>
+    <div class="container">
+        <div class="row">
+            <app-header></app-header>
+        </div>
+        <div class="row">
+            <div class="col-2 menu" *ngIf="isConnected()">
+                <app-menu></app-menu>
+            </div>
+            <div class="col-10 content" [ngClass]="{'content-connected': isConnected()}">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</main>

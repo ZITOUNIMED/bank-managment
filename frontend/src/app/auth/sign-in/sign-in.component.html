@@ -1,13 +1,16 @@
-<form [formGroup]="signInForm" (submit)="onSubmit()">
-    <div>
-        <label>Login</label>
-        <input type="text" formControlName="login"/>
-    </div>
-    <div>
-        <label>Password</label>
-        <input type="password" formControlName="password"/>
-    </div>
-    <div>
-        <button type="submit" [disabled]="signInForm.invalid">Sign In</button>
-    </div>
-</form>
+<main class="form-signin">
+    <form [formGroup]="signInForm" (submit)="onSubmit()">
+        <h1 class="h3 mb-3 fw-normal">Sign in</h1>
+        <div class="form-floating">
+            <input type="text" formControlName="login" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Login</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" formControlName="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="checkbox mb-3">
+            <button type="submit" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </div>
+    </form>
+</main>

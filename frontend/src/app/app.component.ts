@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isConnected(): boolean {
+    return sessionStorage.getItem('isConnected') === 'true';
+  }
 }
