@@ -6,16 +6,25 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import bank.managment.backend.entities.Credentials;
 import bank.managment.backend.entities.User;
 
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
-	
 	private String password;
 	private String username;
+	private boolean accountNonExpired;
+    private boolean accountNonLocked;
+	private boolean credentialsNonExpired;
+	private boolean enabled;
 	
-	public UserDetailsImpl(User user) {
+	public UserDetailsImpl(User user, Credentials credentials) {
 		this.username = user.getLogin();
+		this.password = credentials.getPassword();
+		this.enabled = credentials.isEnabled();
+		this.accountNonExpired = credentials.isAccountNonExpired();
+		this.credentialsNonExpired = credentials.isCredentialsNonExpired();
+		this.accountNonLocked = credentials.isAccountNonLocked();
 	}
 	
 	@Override
@@ -35,22 +44,22 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		return accountNonExpired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		return accountNonLocked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return true;
+		return credentialsNonExpired;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return enabled;
 	}
 
 	
