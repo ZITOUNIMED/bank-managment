@@ -1,10 +1,14 @@
 package bank.managment.backend.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Role {
@@ -15,6 +19,10 @@ public class Role {
 	@Column(unique=true)
     private String code;
     private String label;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Permission> permissions;
+    
 	public Long getId() {
 		return id;
 	}
@@ -32,5 +40,11 @@ public class Role {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public Set<Permission> getPermissions() {
+		return permissions;
+	}
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
 	}
 }

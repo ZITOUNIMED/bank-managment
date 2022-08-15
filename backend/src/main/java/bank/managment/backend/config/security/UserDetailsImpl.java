@@ -1,15 +1,16 @@
 package bank.managment.backend.config.security;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import bank.managment.backend.entities.Credentials;
+import bank.managment.backend.entities.Permission;
 import bank.managment.backend.entities.Role;
 import bank.managment.backend.entities.User;
 
@@ -21,6 +22,7 @@ public class UserDetailsImpl implements UserDetails {
     private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 	private boolean enabled;
+	private Role role;
 	List<GrantedAuthority> authorities;
 	
 	public UserDetailsImpl(User user, Credentials credentials) {
@@ -30,10 +32,26 @@ public class UserDetailsImpl implements UserDetails {
 		this.accountNonExpired = credentials.isAccountNonExpired();
 		this.credentialsNonExpired = credentials.isCredentialsNonExpired();
 		this.accountNonLocked = credentials.isAccountNonLocked();
-		GrantedAuthority authority = () -> user.getRole().getCode();
-		authorities = Arrays.asList(authority);
+		this.role = user.getRole();
+		
+		authorities = convertPermissionsToAuthorities(user.getRole().getPermissions());
+		GrantedAuthority roleAuthority = () -> user.getRole().getCode();
+		authorities.add(roleAuthority);
+		
 	}
 	
+	private List<GrantedAuthority> convertPermissionsToAuthorities(Set<Permission> permissions) {
+		if(permissions != null) {
+			return permissions.stream()
+					.map(permission -> {
+						GrantedAuthority authority = () -> permission.getCode();
+						return authority;
+					})
+					.collect(Collectors.toList());
+		}
+		return new ArrayList<>();
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
@@ -69,6 +87,8 @@ public class UserDetailsImpl implements UserDetails {
 		return enabled;
 	}
 
-	
+	public Role getRole() {
+		return role;
+	}
 
 }

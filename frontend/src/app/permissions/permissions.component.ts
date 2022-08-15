@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RoleModel } from './models/role.model';
+import { PermissionsService } from './permissions.service';
 
 @Component({
   selector: 'app-permissions',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissionsComponent implements OnInit {
 
-  constructor() { }
+  userRole: RoleModel = {} as RoleModel;
+
+  constructor(private permissionsService: PermissionsService) { }
 
   ngOnInit(): void {
+    this.permissionsService.getUserRole().subscribe(userRole => (this.userRole = userRole));
   }
-
 }
