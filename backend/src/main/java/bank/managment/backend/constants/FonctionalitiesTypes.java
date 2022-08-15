@@ -1,7 +1,9 @@
 package bank.managment.backend.constants;
 
 public enum FonctionalitiesTypes {
-	MANAGE_USERS("/users", "Manage Users"), MANAGE_LOGS("/logs", "Manage Logs");
+	MANAGE_USERS("/users", "Manage Users"), 
+	MANAGE_LOGS("/logs", "Manage Logs"),
+	MANAGE_PERMISSIONS("/permissions", "Manage Permissions");
 	
 	private String path;
 	private String label;

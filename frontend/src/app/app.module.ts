@@ -11,6 +11,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { AppHttpInterceptor } from './http-interceptor';
+import { UsersComponent } from './users/users.component';
+import { LogsComponent } from './logs/logs.component';
+import { PermissionsComponent } from './permissions/permissions.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { AppHttpInterceptor } from './http-interceptor';
     HomeComponent,
     HeaderComponent,
     MenuComponent,
+    UsersComponent,
+    LogsComponent,
+    PermissionsComponent,
   ],
   imports: [
     BrowserModule,

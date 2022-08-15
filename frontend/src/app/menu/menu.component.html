@@ -1,6 +1,13 @@
 <div class="flex-shrink-0 p-3 bg-white">
     <ul class="list-unstyled ps-0">
-      <li class="mb-1">
+      <li *ngFor="let link of links" class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" 
+        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false"
+        (click)="openLink(link)">
+          {{link.label}}
+        </button>
+      </li>
+      <!--<li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
           Dashboard
         </button>
@@ -38,6 +45,6 @@
             <li><a href="#" class="link-dark rounded">Sign out</a></li>
           </ul>
         </div>
-      </li>
+      </li>-->
     </ul>
   </div>
