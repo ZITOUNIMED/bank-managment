@@ -1,22 +1,52 @@
 package bank.managment.backend.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import bank.managment.backend.dto.FonctionalityDto;
 import bank.managment.backend.entities.Role;
 import bank.managment.backend.services.IPermissionService;
+import bank.managment.backend.services.IRoleService;
 
 @RestController
 @RequestMapping("/api/permissions")
 public class PermissionsController {
 	@Autowired
+	private IRoleService roleService;
+	
+	@Autowired
 	private IPermissionService permissionService;
 	
-	@GetMapping("/user-role")
-	public ResponseEntity<Role> getUserRole(){
-		return ResponseEntity.ok(permissionService.getUserRole());
+	@GetMapping("/roles")
+	public ResponseEntity<List<Role>> getRoles(){
+		return ResponseEntity.ok(roleService.findAll());
+	}
+	
+	@GetMapping("/fonctionalities")
+	public ResponseEntity<List<FonctionalityDto>> getFonctionalities(){
+		return ResponseEntity.ok(permissionService.getFonctionalities());
+	}
+	
+	@PostMapping("/add-role")
+	public ResponseEntity<?> addRole(@RequestBody Role role){
+		if(role != null) {
+			roleService.save(role);
+			return ResponseEntity.ok(ResponseEntity.accepted()
+					.build()
+					.getStatusCode());
+		}
+		
+		return ResponseEntity.ok(ResponseEntity.badRequest()
+				.build()
+				.getStatusCode());
+		
 	}
 }

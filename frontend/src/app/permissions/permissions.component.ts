@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RoleModalComponent } from './modal/role-modal/role-modal.component';
+import { FonctionalityModel } from './models/fonctionality.model';
 import { RoleModel } from './models/role.model';
 import { PermissionsService } from './permissions.service';
 
@@ -9,11 +12,38 @@ import { PermissionsService } from './permissions.service';
 })
 export class PermissionsComponent implements OnInit {
 
-  userRole: RoleModel = {} as RoleModel;
+  roles: RoleModel[] = [];
+  fonctionalities: FonctionalityModel[] = [];
 
-  constructor(private permissionsService: PermissionsService) { }
+  constructor(private permissionsService: PermissionsService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.permissionsService.getUserRole().subscribe(userRole => (this.userRole = userRole));
+    this.loadRoles();
+    this.loadFonctionalies();
+  }
+
+  loadRoles(): void {
+    this.permissionsService.getRoles().subscribe(roles => (this.roles = roles));
+  }
+
+  loadFonctionalies(): void {
+    this.permissionsService.getFonctionalities().subscribe(fonctionalities => (this.fonctionalities = fonctionalities));
+  }
+
+  openModalAddRole(): void {
+    this.modalService.open(RoleModalComponent).result.then((role) => {
+      if(role){
+        this.addRole(role);
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
+  }
+
+  addRole(role: RoleModel): void {
+    this.permissionsService.addRole(role)
+    .subscribe(() => {
+      this.loadRoles();
+    })
   }
 }

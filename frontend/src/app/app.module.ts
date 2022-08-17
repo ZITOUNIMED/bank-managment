@@ -14,6 +14,7 @@ import { AppHttpInterceptor } from './http-interceptor';
 import { UsersComponent } from './users/users.component';
 import { LogsComponent } from './logs/logs.component';
 import { PermissionsComponent } from './permissions/permissions.component';
+import { RoleModalComponent } from './permissions/modal/role-modal/role-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PermissionsComponent } from './permissions/permissions.component';
     UsersComponent,
     LogsComponent,
     PermissionsComponent,
+    RoleModalComponent,
   ],
   imports: [
     BrowserModule,

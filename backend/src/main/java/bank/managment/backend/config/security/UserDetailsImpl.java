@@ -22,7 +22,6 @@ public class UserDetailsImpl implements UserDetails {
     private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 	private boolean enabled;
-	private Role role;
 	List<GrantedAuthority> authorities;
 	
 	public UserDetailsImpl(User user, Credentials credentials) {
@@ -32,7 +31,6 @@ public class UserDetailsImpl implements UserDetails {
 		this.accountNonExpired = credentials.isAccountNonExpired();
 		this.credentialsNonExpired = credentials.isCredentialsNonExpired();
 		this.accountNonLocked = credentials.isAccountNonLocked();
-		this.role = user.getRole();
 		
 		authorities = convertPermissionsToAuthorities(user.getRole().getPermissions());
 		GrantedAuthority roleAuthority = () -> user.getRole().getCode();
@@ -86,9 +84,4 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return enabled;
 	}
-
-	public Role getRole() {
-		return role;
-	}
-
 }

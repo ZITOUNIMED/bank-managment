@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Role</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="roleForm">
+        <div class="mb-3">
+            <div class="form-floating">
+                <input type="text" formControlName="code" class="form-control" id="roleCode" placeholder="Role">
+                <label for="roleCode">Code</label>
+            </div>
+            <div class="space"></div>
+            <div class="form-floating">
+                <input type="text" formControlName="label" class="form-control" id="roleLabel" placeholder="Label">
+                <label for="roleLabel">Label</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" [disabled]="roleForm.invalid" class="btn btn-outline-dark" (click)="saveRole()">Save</button>
+</div>

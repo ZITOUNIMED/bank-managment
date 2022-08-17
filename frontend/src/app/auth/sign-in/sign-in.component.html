@@ -10,7 +10,7 @@
             <label for="floatingPassword">Password</label>
         </div>
         <div class="checkbox mb-3">
-            <button type="submit" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button type="submit" [disabled]="signInForm.invalid" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </div>
     </form>
 </main>
