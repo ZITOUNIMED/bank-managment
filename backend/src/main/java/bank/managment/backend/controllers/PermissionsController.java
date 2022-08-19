@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import bank.managment.backend.dto.FonctionalityDto;
@@ -18,6 +18,7 @@ import bank.managment.backend.services.IRoleService;
 
 @RestController
 @RequestMapping("/api/permissions")
+@PreAuthorize("hasAuthority('MANAGE_PERMISSIONS')")
 public class PermissionsController {
 	@Autowired
 	private IRoleService roleService;
@@ -39,9 +40,21 @@ public class PermissionsController {
 	public ResponseEntity<?> addRole(@RequestBody Role role){
 		if(role != null) {
 			roleService.save(role);
-			return ResponseEntity.ok(ResponseEntity.accepted()
-					.build()
-					.getStatusCode());
+			return ResponseEntity.ok(ResponseEntity.ok());
+		}
+		
+		return ResponseEntity.ok(ResponseEntity.badRequest()
+				.build()
+				.getStatusCode());
+		
+	}
+	
+	@PostMapping("/save-role")
+	public ResponseEntity<?> saveRole(@RequestBody Role role){
+		if(role != null) {
+			role.setPermissions(permissionService.saveAll(role.getPermissions()));
+			roleService.save(role);
+			return ResponseEntity.ok(ResponseEntity.ok());
 		}
 		
 		return ResponseEntity.ok(ResponseEntity.badRequest()

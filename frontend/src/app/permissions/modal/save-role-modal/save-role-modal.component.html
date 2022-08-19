@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Save Role</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="mb-3">
+        <p>Do you want to save this role?</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="cancel()">cancel</button>
+    <button type="button" class="btn btn-outline-success" (click)="save()">Save</button>
+</div>

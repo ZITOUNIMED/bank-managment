@@ -36,6 +36,7 @@ public class RoleInitializer implements CommandLineRunner {
 					.stream().map(fonctionality -> {
 						Permission permission = new Permission();
 						permission.setCode(fonctionality.name());
+						permission.setLabel(fonctionality.getLabel());
 						return permission;
 					})
 					.collect(Collectors.toSet());

@@ -5,3 +5,11 @@
 .permission-container{
     height: 80vh;
 }
+
+.actions {
+    text-align: center;
+    button {
+        position: relative;
+        top: 40%;
+    }
+}

@@ -4,13 +4,14 @@
         <h2 > Manage Permissions </h2>
     </div>
     <div class="row permission-container">
-        <div class="col-6">
+        <div class="col-5">
             <div class="card permission-block">
                 <div class="card-body ">
                     <h5 class="card-title">Fonctionalities</h5>
                     <div>
                         <ul class="list-group">
                             <li *ngFor="let fonctionality of fonctionalities" class="list-group-item">
+                                <input type="checkbox" [formControl]="fonctionality.formControl" />
                                 {{fonctionality.label}}
                             </li>
                           </ul>
@@ -18,16 +19,43 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-2 actions permission-block">
+            <button class="btn btn-light" [disabled]="!this.selectedRole || this.selectedRole.code === 'ADMIN'"
+            (click)="addFonctionalities()">
+                <i class="fa fa-lg fa-long-arrow-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="col-5">
             <div class="card permission-block">
                 <div class="card-body">
-                    <h5 class="card-title">Roles <button class="btn btn-light" (click)="openModalAddRole()"><i class="fa fa-plus" aria-hidden="true"></i></button></h5>
+                    <h5 class="card-title">Roles 
+                        <button class="btn btn-light" (click)="openModalAddRole()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </h5>
                     <div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option *ngFor="let role of roles" [value]="role.code">{{role.label}}</option>
-                          </select>
+                        <div>
+                            <select class="form-select" aria-label="Default select example" [formControl]="roleControl">
+                                <option *ngFor="let role of roles" [value]="role.code">{{role.label}}</option>
+                            </select>
+                        </div>
+                        <div class="space"></div>
+                        <div *ngIf="selectedRole">
+                            <ul class="list-group">
+                                <li *ngFor="let permission of selectedRole.permissions" class="list-group-item">
+                                    {{permission.label}}
+                                    <button [disabled]="selectedRole.code === 'ADMIN'" class="btn btn-light" (click)="removePermission(permission.code)">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </li>
+                              </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="space"></div>
+            <div class="pull-right">
+                <button class="btn btn-outline-success" (click)="openModalSaveRole()">
+                    Save
+                 </button>
             </div>
         </div>
     </div>

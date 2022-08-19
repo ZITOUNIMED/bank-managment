@@ -23,4 +23,7 @@ export class PermissionsService {
     addRole(role: RoleModel): Observable<any>{
         return this.http.post(this.url + '/add-role', role);
     }
+    saveRole(role: RoleModel): Observable<any>{
+        return this.http.post(this.url + '/save-role', role);
+    }
 }
