@@ -15,6 +15,7 @@ import bank.managment.backend.dto.FonctionalityDto;
 import bank.managment.backend.entities.Role;
 import bank.managment.backend.services.IPermissionService;
 import bank.managment.backend.services.IRoleService;
+import bank.managment.backend.trace.Trace;
 
 @RestController
 @RequestMapping("/api/permissions")
@@ -37,6 +38,7 @@ public class PermissionsController {
 	}
 	
 	@PostMapping("/add-role")
+	@Trace
 	public ResponseEntity<?> addRole(@RequestBody Role role){
 		if(role != null) {
 			roleService.save(role);
@@ -50,6 +52,7 @@ public class PermissionsController {
 	}
 	
 	@PostMapping("/save-role")
+	@Trace
 	public ResponseEntity<?> saveRole(@RequestBody Role role){
 		if(role != null) {
 			role.setPermissions(permissionService.saveAll(role.getPermissions()));

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TraceDataModel } from './models/trace-data.model';
+import { TraceDataService } from './trace-data.service';
 
 @Component({
   selector: 'app-logs',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogsComponent implements OnInit {
 
-  constructor() { }
+  tracesData: TraceDataModel[] = [];
+
+  constructor(private traceDataService: TraceDataService) { }
 
   ngOnInit(): void {
+    this.traceDataService.getTracesData()
+    .subscribe(tracesData => (this.tracesData = tracesData))
   }
 
 }

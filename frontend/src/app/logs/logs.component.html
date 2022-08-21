@@ -1,1 +1,13 @@
-<p>logs works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Login</th><th>Method</th><th>Date</th><th>Args</th></tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let traceData of tracesData">
+            <td>{{traceData.login}}</td>
+            <td>{{traceData.method}}</td>
+            <td>{{traceData.date}}</td>
+            <td>{{traceData.args}}</td>
+        </tr>
+    </tbody>
+</table>
