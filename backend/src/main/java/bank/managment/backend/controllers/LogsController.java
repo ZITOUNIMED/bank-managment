@@ -32,7 +32,7 @@ public class LogsController {
 	}
 	
 	@GetMapping("export")
-	public ResponseEntity<?> export(HttpServletResponse response){
+	public void export(HttpServletResponse response){
 		response.setContentType("application/octet-stream");
 		List<TraceData> tracesData = traceDataService.findAll();
 		try {
@@ -40,6 +40,5 @@ public class LogsController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return ResponseEntity.ok(ResponseEntity.ok());
 	}
 }

@@ -1,5 +1,6 @@
 package bank.managment.backend.services.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,15 @@ public class TraceDataServiceImpl implements ITraceDataService {
 	@Override
 	public List<TraceData> findAll() {
 		return Streamable.of(traceDataDao.findAll()).toList();
+	}
+	
+	@Override
+	public List<TraceData> findByDateLessThan(Date date) {
+		return traceDataDao.findByDateLessThan(date);
+	}
+	
+	@Override
+	public void deleteByDateLessThan(Date date) {
+		traceDataDao.deleteByDateLessThan(date);
 	}
 }
