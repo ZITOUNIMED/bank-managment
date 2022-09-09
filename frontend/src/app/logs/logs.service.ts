@@ -7,11 +7,17 @@ import { TraceDataModel } from "./models/trace-data.model";
 @Injectable({
     providedIn: 'root'
 })
-export class TraceDataService {
+export class LogsService {
     url = environment.api_url + '/logs';
     constructor(private http: HttpClient){}
 
     getTracesData(): Observable<TraceDataModel[]>{
         return this.http.get<TraceDataModel[]>(this.url);
+    }
+
+    export(): Observable<any>{
+        return this.http.get(this.url + '/export', {
+            responseType: 'blob'
+          });
     }
 }

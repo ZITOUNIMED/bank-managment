@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TraceDataModel } from './models/trace-data.model';
-import { TraceDataService } from './trace-data.service';
+import { LogsService } from './logs.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-logs',
@@ -11,11 +12,18 @@ export class LogsComponent implements OnInit {
 
   tracesData: TraceDataModel[] = [];
 
-  constructor(private traceDataService: TraceDataService) { }
+  constructor(private logsService: LogsService) { }
 
   ngOnInit(): void {
-    this.traceDataService.getTracesData()
+    this.logsService.getTracesData()
     .subscribe(tracesData => (this.tracesData = tracesData))
   }
 
+  export(): void {
+    this.logsService.export()
+    .subscribe(blob => {
+      const filename = `trace-data-${new Date().getTime()}.xlsx`;
+      saveAs(blob, filename);
+    });
+  }
 }
