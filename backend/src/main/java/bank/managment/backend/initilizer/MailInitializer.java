@@ -19,7 +19,8 @@ public class MailInitializer implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		mailSender.sendSimpleMessage("Hello from BankManagement Application.");
+		// mailSender.sendSimpleMessage("Hello from BankManagement Application.");
+		mailSender.sendHtmlMessage();
 	}
 
 }
