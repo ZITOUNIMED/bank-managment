@@ -4,8 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RoleModalComponent } from './modal/role-modal/role-modal.component';
 import { SaveRoleModalComponent } from './modal/save-role-modal/save-role-modal.component';
 import { FonctionalityModel } from './models/fonctionality.model';
-import { PermissionModel } from './models/permission.model';
-import { RoleModel } from './models/role.model';
+import { PermissionModel } from '../shared/models/permission.model';
+import { RoleModel } from '../shared/models/role.model';
 import { PermissionsService } from './permissions.service';
 
 @Component({

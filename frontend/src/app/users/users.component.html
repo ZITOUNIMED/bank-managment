@@ -1,1 +1,19 @@
-<p>users works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>First Name</th><th>Last Name</th><th>Login</th><th>E-mail</th><th>Role</th>
+        <th>
+            <button class="btn btn-light" (click)="openModalUserRole()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.login}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role?.label}}</td>
+            <td><button class="btn btn-light" (click)="openModalManageUser()"><i class="fa fa-cog" aria-hidden="true"></i></button></td>
+        </tr>
+    </tbody>
+</table>

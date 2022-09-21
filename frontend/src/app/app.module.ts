@@ -16,6 +16,8 @@ import { LogsComponent } from './logs/logs.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { RoleModalComponent } from './permissions/modal/role-modal/role-modal.component';
 import { SaveRoleModalComponent } from './permissions/modal/save-role-modal/save-role-modal.component';
+import { UserModalComponent } from './users/modal/user-modal/user-modal.component';
+import { ManageUsersModalComponent } from './users/modal/manage-users-modal/manage-users-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { SaveRoleModalComponent } from './permissions/modal/save-role-modal/save
     PermissionsComponent,
     RoleModalComponent,
     SaveRoleModalComponent,
+    UserModalComponent,
+    ManageUsersModalComponent,
   ],
   imports: [
     BrowserModule,

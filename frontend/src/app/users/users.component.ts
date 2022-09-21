@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModel } from './model/user-model';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-
-  constructor() { }
+  users: UserModel[] = [];
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.loadUsers();
   }
 
+  loadUsers(){
+    this.usersService.getUsers()
+    .subscribe(users => (this.users = users));
+  }
+
+  openModalUserRole(){}
+
+  openModalManageUser(){}
 }
