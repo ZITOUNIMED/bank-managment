@@ -1,1 +1,38 @@
-<p>user-modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">User</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="userForm">
+        <div class="mb-3">
+            <div class="form-floating">
+                <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="First Name">
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="space"></div>
+            <div class="form-floating">
+                <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Last Name">
+                <label for="lastName">Last Name</label>
+            </div>
+            <div class="space"></div>
+            <div class="form-floating">
+                <input type="text" formControlName="login" class="form-control" id="login" placeholder="Login">
+                <label for="login">Login</label>
+            </div>
+            <div class="space"></div>
+            <div class="form-floating">
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="E-mail">
+                <label for="email">E-mail</label>
+            </div>
+            <div class="space"></div>
+            <div class="form-floating">
+                <select class="form-select" formControlName="role">
+                    <option *ngFor="let role of roles" [value]="role.code">{{role.label}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" [disabled]="userForm.invalid" class="btn btn-outline-dark" (click)="saveUser()">Save</button>
+</div>

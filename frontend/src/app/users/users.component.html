@@ -13,7 +13,18 @@
             <td>{{user.login}}</td>
             <td>{{user.email}}</td>
             <td>{{user.role?.label}}</td>
-            <td><button class="btn btn-light" (click)="openModalManageUser()"><i class="fa fa-cog" aria-hidden="true"></i></button></td>
+            <td><button class="btn btn-light"
+                [ngbTooltip]="tipContent"
+                placement="bottom"
+                [closeDelay]="3000"
+                ><i class="fa fa-cog" aria-hidden="true"></i></button></td>
         </tr>
     </tbody>
 </table>
+<ng-template #tipContent>
+    <div class="list-group">
+        <a (click)="edit()" class="list-group-item list-group-item-action">Edit</a>
+        <a (click)="remove()" class="list-group-item list-group-item-action">Remove</a>
+        <a (click)="sendCredentials()" class="list-group-item list-group-item-action">Send credentials</a>
+     </div>
+</ng-template>

@@ -6,5 +6,5 @@ export interface UserModel {
 	lastName: string;
     login: string;
     email: string;
-	role: RoleModel;
+	role: RoleModel | string;
 }
