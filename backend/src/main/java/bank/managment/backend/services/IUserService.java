@@ -11,4 +11,5 @@ public interface IUserService {
 	Optional<User> findByLogin(String login);
 	List<User> findAll();
 	List<User> findByRoleCode(String code);
+	void deleteById(Long id);
 }

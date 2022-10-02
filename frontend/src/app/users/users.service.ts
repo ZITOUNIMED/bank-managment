@@ -18,4 +18,8 @@ export class UsersService {
     saveUser(user: UserModel): Observable<any>{
         return this.http.post(this.url, user);
     }
+
+    remove(id: number): Observable<any>{
+        return this.http.delete(this.url + `/${id}`);
+    }
 }

@@ -14,6 +14,7 @@ import { UsersService } from './users.service';
 export class UsersComponent implements OnInit {
   users: UserModel[] = [];
   roles: RoleModel[] = [];
+  selectedUser: UserModel;
 
   constructor(private usersService: UsersService, 
     private modalService: NgbModal,
@@ -33,38 +34,50 @@ export class UsersComponent implements OnInit {
     .subscribe(users => (this.users = users));
   }
 
-  openModalUserRole(){
+  openModalUser(): void {
     const modalRef  = this.modalService.open(UserModalComponent);
     modalRef.componentInstance.roles = this.roles;
+    modalRef.componentInstance.user = this.selectedUser;
 
     modalRef.result.then((user) => {
       if(user){
-        this.addUser(user);
+        this.saveUser(user);
       }
     }, (reason) => {
       console.log(reason);
     });
   }
 
-  private addUser(user: UserModel): void {
-    const roleStr: string = user.role as string;
-    const role = this.roles.find(item => item.code === roleStr);
+  private saveUser(user: any): void {
+    const roleCode: string = user.roleCode;
+    const role = this.roles.find(item => item.code === roleCode);
     if(role){
       user.role = role;
+      if(this.selectedUser){
+        user.id = this.selectedUser.id;
+      }
       this.usersService.saveUser(user)
       .subscribe(() => {
         this.loadUsers();
+        this.selectedUser = null;
       });
     }
-    
+  }
+
+  selectUser(user: UserModel): void {
+    this.selectedUser = user;
   }
 
   edit(): void {
-    alert('edit');
+    this.openModalUser();
   }
 
   remove(): void {
-    alert('remove');
+    this.usersService.remove(this.selectedUser.id)
+    .subscribe(() => {
+      this.loadUsers();
+      this.selectedUser = null;
+    });
   }
 
   sendCredentials(): void {

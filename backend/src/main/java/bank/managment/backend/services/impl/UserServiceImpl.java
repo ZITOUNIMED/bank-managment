@@ -40,5 +40,10 @@ public class UserServiceImpl implements IUserService {
 	public List<User> findByRoleCode(String code) {
 		return userDao.findByRoleCode(code);
 	}
+	
+	@Override
+	public void deleteById(Long id) {
+		userDao.deleteById(id);
+	}
 
 }
