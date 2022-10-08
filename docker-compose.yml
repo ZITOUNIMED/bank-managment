@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    discovery-service:
+        build:
+            context: .
+            dockerfile: ./DiscoveryService/Dockerfile
+        ports:
+            - "8761:8761"
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://discovery-service:8761"]
+          interval: 3s
+          timeout: 3s
+          retries: 5
+    central-admin:
+        build:
+            context: .
+            dockerfile: ./CentralAdmin/Dockerfile
+        ports: 
+            - "8083:8083"
+        depends_on:
+            - discovery-service
+        restart: on-failure
