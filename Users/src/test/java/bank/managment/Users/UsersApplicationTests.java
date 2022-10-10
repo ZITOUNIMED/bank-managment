@@ -1,14 +1,13 @@
-/*package bank.managment.customer.Customer;
+package bank.managment.Users;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CustomerApplicationTests {
+class UsersApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
 }
-*/

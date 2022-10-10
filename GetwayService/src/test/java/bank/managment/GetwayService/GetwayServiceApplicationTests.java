@@ -1,10 +1,10 @@
-/*package bank.managment.customer.Customer;
+/*package bank.managment.GetwayService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CustomerApplicationTests {
+class GetwayServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
