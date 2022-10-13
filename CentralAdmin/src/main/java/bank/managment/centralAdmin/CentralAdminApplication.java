@@ -1,4 +1,4 @@
-package bank.managment.centralAdmin.CentralAdmin;
+package bank.managment.centralAdmin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
