@@ -1,5 +1,5 @@
 FROM amazoncorretto:11-alpine-jdk
 VOLUME /swiftAdminTmp
-COPY ./Swift/target/*.jar app.jar 
+COPY target/*.jar app.jar 
 EXPOSE 8085
 ENTRYPOINT ["java","-jar","/app.jar"]

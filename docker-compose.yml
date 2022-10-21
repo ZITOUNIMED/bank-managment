@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
     discovery-service:
-        build:
-            context: .
-            dockerfile: ./DiscoveryService/Dockerfile
+        image: discovery-service
         ports:
             - "8761:8761"
         healthcheck:
@@ -13,9 +11,7 @@ services:
           timeout: 3s
           retries: 7
     getway-service:
-        build:
-            context: .
-            dockerfile: ./GetwayService/Dockerfile
+        image: getway-service
         ports: 
             - "8080:8080"
         depends_on:
@@ -24,9 +20,7 @@ services:
         environment:
             EUREKA_SERVER: http://discovery-service:8761/eureka
     central-admin:
-        build:
-            context: .
-            dockerfile: ./CentralAdmin/Dockerfile
+        image: central-admin
         ports: 
             - "8083:8083"
         depends_on:
@@ -36,9 +30,7 @@ services:
         environment:
             EUREKA_SERVER: http://discovery-service:8761/eureka
     customer:
-        build:
-            context: .
-            dockerfile: ./Customer/Dockerfile
+        image: customer
         ports: 
             - "8084:8084"
         depends_on:
@@ -48,9 +40,7 @@ services:
         environment:
             EUREKA_SERVER: http://discovery-service:8761/eureka
     auth-service:
-        build:
-            context: .
-            dockerfile: ./AuthService/Dockerfile
+        image: auth-service
         ports: 
             - "8082:8082"
         depends_on:
@@ -60,9 +50,7 @@ services:
         environment:
             EUREKA_SERVER: http://discovery-service:8761/eureka
     export-service:
-        build:
-            context: .
-            dockerfile: ./Export/Dockerfile
+        image: export
         ports: 
             - "8081:8081"
         depends_on:
@@ -72,9 +60,7 @@ services:
         environment:
             EUREKA_SERVER: http://discovery-service:8761/eureka
     swift-service:
-        build:
-            context: .
-            dockerfile: ./Swift/Dockerfile
+        image: swift
         ports: 
             - "8085:8085"
         depends_on:
