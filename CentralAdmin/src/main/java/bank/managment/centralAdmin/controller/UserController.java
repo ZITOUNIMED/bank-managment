@@ -18,8 +18,8 @@ public class UserController {
 		User user2 = new User();
 		User user3 = new User();
 		
-		user1.setFirstName("First Name 1.2");
-		user1.setLastName("Last Name 1.2");
+		user1.setFirstName("First Name 1.4");
+		user1.setLastName("Last Name 1.4");
 		
 		user2.setFirstName("First Name 2");
 		user2.setLastName("Last Name 2");

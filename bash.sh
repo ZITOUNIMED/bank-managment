@@ -94,4 +94,4 @@ do
 	
 done
 
-echo "Finished."
+echo "Build Docker Images Finished."

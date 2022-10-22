@@ -39,33 +39,33 @@ services:
         restart: on-failure
         environment:
             EUREKA_SERVER: http://discovery-service:8761/eureka
-    auth-service:
-        image: auth-service
-        ports: 
-            - "8082:8082"
-        depends_on:
-            - discovery-service
-            - getway-service
-        restart: on-failure
-        environment:
-            EUREKA_SERVER: http://discovery-service:8761/eureka
-    export-service:
-        image: export
-        ports: 
-            - "8081:8081"
-        depends_on:
-            - discovery-service
-            - getway-service
-        restart: on-failure
-        environment:
-            EUREKA_SERVER: http://discovery-service:8761/eureka
-    swift-service:
-        image: swift
-        ports: 
-            - "8085:8085"
-        depends_on:
-            - discovery-service
-            - getway-service
-        restart: on-failure
-        environment:
-            EUREKA_SERVER: http://discovery-service:8761/eureka
+#    auth-service:
+#        image: auth-service
+#        ports: 
+#            - "8082:8082"
+#        depends_on:
+#            - discovery-service
+#            - getway-service
+#        restart: on-failure
+#        environment:
+#            EUREKA_SERVER: http://discovery-service:8761/eureka
+#    export-service:
+#        image: export
+#        ports: 
+#            - "8081:8081"
+#        depends_on:
+#            - discovery-service
+#            - getway-service
+#        restart: on-failure
+#        environment:
+#            EUREKA_SERVER: http://discovery-service:8761/eureka
+#    swift-service:
+#        image: swift
+#        ports: 
+#            - "8085:8085"
+#        depends_on:
+#            - discovery-service
+#            - getway-service
+#        restart: on-failure
+#        environment:
+#            EUREKA_SERVER: http://discovery-service:8761/eureka
