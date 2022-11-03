@@ -1,8 +1,7 @@
-server.port=8080
+server.port=8083
 
 #eureka.client.serviceUrl.defaultZone=${EUREKA_SERVER:http://localhost:8761/eureka}
 #eureka.client.instance.preferIpAddress=true
-spring.application.name=getway-service
+spring.application.name=central-admin
 
 management.endpoints.web.exposure.include=health,info,env
-

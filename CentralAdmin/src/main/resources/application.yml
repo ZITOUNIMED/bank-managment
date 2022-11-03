@@ -1,0 +1,34 @@
+server:
+  port: 8083
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          central-admin-client-oidc:
+            provider: spring
+            client-id: central-admin-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8083/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: central-admin-client-oidc
+          central-admin-client-authorization-code:
+            provider: spring
+            client-id: central-admin-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8083/authorized"
+            scope: centralAdmin.read
+            client-name: central-admin-client-authorization-code
+        provider:
+          spring:
+            issuer-uri: http://localhost:8080

@@ -1,6 +1,7 @@
 package bank.managment.getwayService.config.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,21 +13,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class DefaultSecurityConfig {
 	@Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-        .anyRequest()
-        	.authenticated();
-        http.oauth2Login();
-        return http.build();
-    }
-	
+	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+		http.authorizeRequests(authorizeRequests -> 
+			authorizeRequests
+			.antMatchers("/api/public/**").permitAll()
+			.anyRequest().authenticated())
+				.formLogin(Customizer.withDefaults());
+		return http.build();
+	}
+
 	@Bean
-    UserDetailsService users() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-          .username("admin")
-          .password("54321")
-          .roles("USER")
-          .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+	UserDetailsService users() {
+		UserDetails user = User.withDefaultPasswordEncoder()
+				.username("admin")
+				.password("54321")
+				.roles("USER")
+				.build();
+		return new InMemoryUserDetailsManager(user);
+	}
 }

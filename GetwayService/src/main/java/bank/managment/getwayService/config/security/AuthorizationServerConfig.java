@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -27,15 +28,14 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
-	 @Bean
-     @Order(Ordered.HIGHEST_PRECEDENCE)
-     public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
+	@Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-        http.oauth2Login();
-        return http.build();
-     }
+        return http.formLogin(Customizer.withDefaults()).build();
+    }
 	 
 	@Bean
     public RegisteredClientRepository registeredClientRepository() {
@@ -45,8 +45,8 @@ public class AuthorizationServerConfig {
           .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
           .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
           .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-          .redirectUri("http://central-admin:8083/login/oauth2/code/central-admin-client-oidc")
-          .redirectUri("http://central-admin:8083/authorized")
+          .redirectUri("http://localhost:8083/login/oauth2/code/central-admin-client-oidc")
+          .redirectUri("http://localhost:8083/authorized")
           .scope(OidcScopes.OPENID)
           .scope("centralAdmin.read")
           .build();
@@ -86,7 +86,7 @@ public class AuthorizationServerConfig {
 	 @Bean
 	 public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
-          .issuer("http://getway-service:8080")
+          .issuer("http://localhost:8080")
           .build();
 	 }
 }
