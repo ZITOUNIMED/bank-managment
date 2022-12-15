@@ -33,22 +33,21 @@ public class AuthorizationServerConfig {
 	@Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
-        OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
+		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
         return http.formLogin(Customizer.withDefaults()).build();
     }
 	 
 	@Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-          .clientId("central-admin-client")
+          .clientId("bank-client")
           .clientSecret("{noop}secret")
-          .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
+          .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
           .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
           .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-          .redirectUri("http://localhost:8083/login/oauth2/code/central-admin-client-oidc")
-          .redirectUri("http://localhost:8083/authorized")
+          .redirectUri("http://127.0.0.1:8083/login/oauth2/code/bank-client-oidc")
+          .redirectUri("http://127.0.0.1:8083/authorized")
           .scope(OidcScopes.OPENID)
-          .scope("centralAdmin.read")
           .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);
@@ -86,7 +85,7 @@ public class AuthorizationServerConfig {
 	 @Bean
 	 public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
-          .issuer("http://localhost:8080")
+          .issuer("http://auth-server:8080")
           .build();
 	 }
 }

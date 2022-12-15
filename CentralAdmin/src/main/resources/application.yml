@@ -9,26 +9,27 @@ logging:
     org.springframework.security.oauth2: INFO
 
 spring:
+  application:
+    name: client-server
   security:
     oauth2:
       client:
         registration:
-          central-admin-client-oidc:
+          bank-client-oidc:
             provider: spring
-            client-id: central-admin-client
+            client-id: bank-client
             client-secret: secret
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8083/login/oauth2/code/{registrationId}"
             scope: openid
-            client-name: central-admin-client-oidc
-          central-admin-client-authorization-code:
+            client-name: bank-client-oidc
+          bank-client-authorization-code:
             provider: spring
-            client-id: central-admin-client
+            client-id: bank-client
             client-secret: secret
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8083/authorized"
-            scope: centralAdmin.read
-            client-name: central-admin-client-authorization-code
+            client-name: bank-client-authorization-code
         provider:
           spring:
-            issuer-uri: http://localhost:8080
+            issuer-uri: http://auth-server:8080

@@ -16,7 +16,6 @@ public class DefaultSecurityConfig {
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests(authorizeRequests -> 
 			authorizeRequests
-			.antMatchers("/api/public/**").permitAll()
 			.anyRequest().authenticated())
 				.formLogin(Customizer.withDefaults());
 		return http.build();
@@ -26,7 +25,7 @@ public class DefaultSecurityConfig {
 	UserDetailsService users() {
 		UserDetails user = User.withDefaultPasswordEncoder()
 				.username("admin")
-				.password("54321")
+				.password("password")
 				.roles("USER")
 				.build();
 		return new InMemoryUserDetailsManager(user);
