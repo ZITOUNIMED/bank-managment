@@ -1,4 +1,4 @@
-package bank.managment.centralAdmin.controller;
+package bank.managment.client.clientserver.controller;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;

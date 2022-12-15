@@ -1,4 +1,4 @@
-package bank.managment.getwayService.config.security;
+package bank.managment.authService.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.Customizer;

@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8090
 
 logging:
   level:
@@ -20,7 +20,7 @@ spring:
             client-id: bank-client
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:8083/login/oauth2/code/{registrationId}"
+            redirect-uri: "http://127.0.0.1:8090/login/oauth2/code/{registrationId}"
             scope: openid
             client-name: bank-client-oidc
           bank-client-authorization-code:
@@ -28,8 +28,8 @@ spring:
             client-id: bank-client
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:8083/authorized"
+            redirect-uri: "http://127.0.0.1:8090/authorized"
             client-name: bank-client-authorization-code
         provider:
           spring:
-            issuer-uri: http://auth-server:8080
+            issuer-uri: http://auth-server:9000

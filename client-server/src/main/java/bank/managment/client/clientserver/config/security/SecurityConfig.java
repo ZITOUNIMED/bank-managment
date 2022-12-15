@@ -1,4 +1,4 @@
-package bank.managment.centralAdmin.config;
+package bank.managment.client.clientserver.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

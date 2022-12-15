@@ -1,4 +1,4 @@
-package bank.managment.getwayService.config.security;
+package bank.managment.authService.config.security;
 
 
 import java.security.KeyPair;
@@ -45,8 +45,8 @@ public class AuthorizationServerConfig {
           .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
           .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
           .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-          .redirectUri("http://127.0.0.1:8083/login/oauth2/code/bank-client-oidc")
-          .redirectUri("http://127.0.0.1:8083/authorized")
+          .redirectUri("http://127.0.0.1:8090/login/oauth2/code/bank-client-oidc")
+          .redirectUri("http://127.0.0.1:8090/authorized")
           .scope(OidcScopes.OPENID)
           .build();
 
@@ -85,7 +85,7 @@ public class AuthorizationServerConfig {
 	 @Bean
 	 public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
-          .issuer("http://auth-server:8080")
+          .issuer("http://auth-server:9000")
           .build();
 	 }
 }
