@@ -8,7 +8,7 @@ import { TraceDataModel } from "./models/trace-data.model";
     providedIn: 'root'
 })
 export class LogsService {
-    url = environment.api_url + '/logs';
+    url = environment.base_url + '/logs';
     constructor(private http: HttpClient){}
 
     getTracesData(): Observable<TraceDataModel[]>{

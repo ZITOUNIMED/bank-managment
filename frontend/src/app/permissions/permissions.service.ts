@@ -9,7 +9,7 @@ import { RoleModel } from "../shared/models/role.model";
     providedIn: 'root'
 })
 export class PermissionsService {
-    url = environment.api_url + '/permissions';
+    url = environment.base_url + '/permissions';
     constructor(private http: HttpClient){}
 
     getRoles(): Observable<RoleModel[]> {

@@ -13,7 +13,7 @@ import { SignInService } from '../sign-in.service';
 export class SignInComponent implements OnInit {
 
   signInForm = new FormGroup({
-    login: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
     password: new FormControl('', [Validators.maxLength(50)]),
   });
 

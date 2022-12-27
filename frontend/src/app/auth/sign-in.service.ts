@@ -9,7 +9,7 @@ import { SignInResponse } from "./models/sign-in-response.model";
     providedIn: 'root'
 })
 export class SignInService {
-    url = environment.api_url + '/auth/sign-in';
+    url = environment.base_url + '/api/login';
     constructor(private http: HttpClient){}
 
     signIn(signInRequest: SignInRequest): Observable<SignInResponse> {

@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("http://localhost:4200")
 public class DefaultController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
@@ -54,6 +56,8 @@ public class DefaultController {
 				headers.add("referer", referer);
 			}
 		};
+		
+		
 		ResponseEntity<String> response = client.get()
 				.uri(url)
 				.headers(headersConsumer)
@@ -62,10 +66,8 @@ public class DefaultController {
 			        status -> status.value() == 401 || status.value() == 302,
 			        clientResponse -> Mono.empty()
 			    )
-			    .bodyToMono(ResponseEntity.class)
+			    .toEntity(String.class)
 			    .block();
-//			    .toEntity(String.class)
-//			    .block();
 
 		if (response.getStatusCodeValue() == 401) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

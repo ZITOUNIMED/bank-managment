@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:8080/api'
+  base_url: 'http://localhost:8080',
+  central_admin_path: '/central-admin',
+  customer_path:'/customer'
 };
 
 /*

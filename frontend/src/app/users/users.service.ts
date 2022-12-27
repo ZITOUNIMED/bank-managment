@@ -8,7 +8,7 @@ import { UserModel } from "./model/user-model";
     providedIn: 'root'
 })
 export class UsersService {
-    url = environment.api_url + '/users';
+    url = environment.base_url + '/users';
     constructor(private http: HttpClient){}
 
     getUsers(): Observable<UserModel[]>{

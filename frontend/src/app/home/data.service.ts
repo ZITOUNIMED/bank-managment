@@ -2,16 +2,15 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
-import { LinkModel } from "./models/link.model";
 
 @Injectable({
     providedIn: 'root'
 })
-export class MenuService {
-    url = environment.base_url + '/menu';
+export class DataService {
+    url = environment.base_url + environment.central_admin_path + '/api';
     constructor(private http: HttpClient){}
 
-    getMenu(): Observable<LinkModel[]> {
-        return this.http.get<LinkModel[]>(this.url);
+    getData(): Observable<any> {
+        return this.http.get(this.url+'/data');
     }
 }
