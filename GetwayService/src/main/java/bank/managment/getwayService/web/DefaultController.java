@@ -62,8 +62,10 @@ public class DefaultController {
 			        status -> status.value() == 401 || status.value() == 302,
 			        clientResponse -> Mono.empty()
 			    )
-			    .toEntity(String.class)
+			    .bodyToMono(ResponseEntity.class)
 			    .block();
+//			    .toEntity(String.class)
+//			    .block();
 
 		if (response.getStatusCodeValue() == 401) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

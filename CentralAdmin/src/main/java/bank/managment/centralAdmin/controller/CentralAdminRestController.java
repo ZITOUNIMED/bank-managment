@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class CentralAdminRestController {
-	@GetMapping("/secure/data")
+	@GetMapping("/data")
 	public Map<String, String> getSecureData(){
 		Map<String, String> map = new HashMap<>();
 		map.put("secure_1", "Value 1");

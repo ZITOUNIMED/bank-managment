@@ -14,6 +14,7 @@
 	<name>AuthService</name>
 	<properties>
 		<java.version>11</java.version>
+		<spring-cloud.version>2021.0.4</spring-cloud.version>
 		<spring-auth-server.version>0.2.0</spring-auth-server.version>
 	</properties>
 	<dependencies>
@@ -30,6 +31,14 @@
             <artifactId>spring-security-oauth2-authorization-server</artifactId>
             <version>${spring-auth-server.version}</version>
         </dependency>
+        <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -37,7 +46,7 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-	<!--<dependencyManagement>
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -47,15 +56,15 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>-->
+	</dependencyManagement>
 
-	<!--<build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>-->
+	</build>
 
 </project>
